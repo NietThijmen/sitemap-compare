@@ -26,6 +26,9 @@ jobs:
         with:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           path: 'vendor'
+      - name: Install Dependencies
+        run: |
+          composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
       - name: Run pint
         run: |
           composer pint
