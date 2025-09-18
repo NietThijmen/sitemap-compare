@@ -1,6 +1,11 @@
 # Sitemap finder
 Find sitemaps, urls, compare sitemaps and even compare websites to sitemaps.
 
+
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/nietthijmen/sitemap-compare.svg?style=flat-square)](https://packagist.org/packages/nietthijmen/sitemap-compare)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/nietthijmen/sitemap-compare/build-project.yml?branch=main&label=tests&style=flat-square)](https://github.com/nietthijmen/sitemap-compare/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/nietthijmen/sitemap-compare.svg?style=flat-square)](https://packagist.org/packages/nietthijmen/sitemap-compare)
+
 ## Features
 - Find sitemaps from a website
 - Find urls from a sitemap
@@ -19,13 +24,15 @@ Find sitemaps, urls, compare sitemaps and even compare websites to sitemaps.
 - JSON extension
 - mbstring extension
 
-
 ## Installation
-1. Clone the repository:
+1. Install via composer
+```shell
+composer global require nietthijmen/sitemap-compare 
 ```
-    git clone <TODO: REPO URL>
-```
+2. You're done!
 
+## Installation (development)
+1. Clone the repository:
 2. Navigate to the project directory:
 ```
     cd sitemap-finder
