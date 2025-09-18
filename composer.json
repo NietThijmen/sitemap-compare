@@ -3,6 +3,7 @@
     "description": "A CLI tool for working with sitemaps.",
     "keywords": ["cli", "sitemap", "laravel-zero", "webdev", "seo"],
     "homepage": "https://rierink.dev",
+    "version": "1.0.0",
     "type": "project",
     "license": "MIT",
     "support": {
@@ -17,17 +18,17 @@
     ],
     "require": {
         "php": "^8.2",
-        "ext-simplexml": "*",
-        "illuminate/http": "^12.17",
-        "laravel-zero/framework": "^12.0",
-        "spatie/fork": "^1.2"
+        "ext-simplexml": "*"
     },
     "require-dev": {
         "larastan/larastan": "^3.7",
         "laravel/pint": "^1.25",
         "mockery/mockery": "^1.6.12",
         "pestphp/pest": "^3.8.2",
-        "phpstan/phpstan": "^2.1"
+        "phpstan/phpstan": "^2.1",
+        "illuminate/http": "^12.17",
+        "laravel-zero/framework": "^12.0",
+        "spatie/fork": "^1.2"
     },
     "autoload": {
         "psr-4": {
@@ -63,5 +64,7 @@
     },
     "minimum-stability": "stable",
     "prefer-stable": true,
-    "bin": ["sitemap-compare"]
+    "bin": [
+        "builds/sitemap-compare"
+    ]
 }

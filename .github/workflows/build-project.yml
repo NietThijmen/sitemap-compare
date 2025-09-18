@@ -1,0 +1,43 @@
+name: "Build project"
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - builds
+
+
+permissions:
+  contents: write
+
+jobs:
+  pint:
+    name: "Start build"
+    runs-on: ubuntu-latest
+    continue-on-error: false
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+      - name: Cache Composer Dependencies
+        uses: actions/cache@v4
+        id: composer-cache
+        with:
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          path: 'vendor'
+      - name: Run pint
+        run: |
+          composer pint
+      - name: Run phpstan
+        run: |
+          ./vendor/bin/phpstan analyse -c phpstan.neon
+      - name: Start build
+        run: |
+          ./.ci/build-version.php
+      - name: Commit back
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: 'builds'
+          message: "Build phar version"
+          push: 'true'
