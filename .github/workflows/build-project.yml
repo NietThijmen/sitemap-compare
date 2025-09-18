@@ -16,6 +16,8 @@ jobs:
     runs-on: ubuntu-latest
     continue-on-error: false
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
