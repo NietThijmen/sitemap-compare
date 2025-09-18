@@ -1,0 +1,67 @@
+{
+    "name": "nietthijmen/sitemap-compare",
+    "description": "A CLI tool for working with sitemaps.",
+    "keywords": ["cli", "sitemap", "laravel-zero", "webdev", "seo"],
+    "homepage": "https://rierink.dev",
+    "type": "project",
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/nietthijmen/sitemap-compare/issues",
+        "source": "https://github.com/nietthijmen/sitemap-compare"
+    },
+    "authors": [
+        {
+            "name": "Thijmen Rierink",
+            "email": "thijmen@rierink.dev"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "ext-simplexml": "*",
+        "illuminate/http": "^12.17",
+        "laravel-zero/framework": "^12.0",
+        "spatie/fork": "^1.2"
+    },
+    "require-dev": {
+        "larastan/larastan": "^3.7",
+        "laravel/pint": "^1.25",
+        "mockery/mockery": "^1.6.12",
+        "pestphp/pest": "^3.8.2",
+        "phpstan/phpstan": "^2.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        }
+    },
+
+    "scripts": {
+        "pint": "pint --test",
+        "pint:fix": "pint",
+        "build": [
+            "@pint",
+            "phpstan analyse -c phpstan.neon",
+            "php sitemap-compare test",
+            "php sitemap-compare app:build"
+        ]
+    },
+
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "bin": ["sitemap-compare"]
+}
