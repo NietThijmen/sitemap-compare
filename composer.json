@@ -3,7 +3,7 @@
     "description": "A CLI tool for working with sitemaps.",
     "keywords": ["cli", "sitemap", "laravel-zero", "webdev", "seo"],
     "homepage": "https://rierink.dev",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "type": "project",
     "license": "MIT",
     "support": {
