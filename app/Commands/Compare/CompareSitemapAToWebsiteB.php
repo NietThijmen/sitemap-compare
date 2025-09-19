@@ -2,6 +2,7 @@
 
 namespace App\Commands\Compare;
 
+use App\Service\RetryService;
 use Illuminate\Console\Command;
 use Spatie\Fork\Fork;
 
@@ -73,7 +74,17 @@ class CompareSitemapAToWebsiteB extends Command
         $forkArray = [];
         foreach ($sitemapUrls as $url) {
             $forkArray[] = function () use ($url) {
-                return $this->checkUrl($url);
+                /**
+                 * Retry mechanism to handle errors gracefully instead of just killing the whole process
+                 * if one URL fails.
+                 */
+                return RetryService::Retry(
+                    3,
+                    fn () => $this->checkUrl($url),
+                    500,
+                    fn ($exception) => $this->warn("[Retry] Error checking URL $url: ".$exception->getMessage()),
+                    fn ($exception) => $this->warn("[Retry] Failed to check URL $url after multiple attempts: ".$exception->getMessage())
+                );
             };
         }
 
@@ -83,8 +94,13 @@ class CompareSitemapAToWebsiteB extends Command
             ->run(...$forkArray);
 
         foreach ($outputs as $output) {
-            if ($output['is_successful']) {
-                $foundUrls[] = $output['url'];
+            try {
+                if ($output['is_successful']) {
+                    $foundUrls[] = $output['url'];
+                }
+                // @phpstan-ignore-next-line
+            } catch (\Throwable $exception) {
+                $this->warn('Unknown output from output array: '.json_encode($output));
             }
         }
 
@@ -106,7 +122,7 @@ class CompareSitemapAToWebsiteB extends Command
     private function outputCli(
         array $sitemapUrls,
         array $foundUrls
-    ) {
+    ): void {
         $this->info('Sitemap URLs from source1:');
         foreach ($sitemapUrls as $url) {
             $this->line($url);
@@ -132,7 +148,7 @@ class CompareSitemapAToWebsiteB extends Command
     private function outputJson(
         array $sitemapUrls,
         array $foundUrls
-    ) {
+    ): void {
 
         $urlsNotFound = array_values(array_diff($sitemapUrls, $foundUrls));
         $output = [
