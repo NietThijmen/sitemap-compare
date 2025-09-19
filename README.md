@@ -3,7 +3,7 @@ Find sitemaps, urls, compare sitemaps and even compare websites to sitemaps.
 
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/nietthijmen/sitemap-compare.svg?style=flat-square)](https://packagist.org/packages/nietthijmen/sitemap-compare)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/nietthijmen/sitemap-compare/build-project.yml?branch=main&label=tests&style=flat-square)](https://github.com/nietthijmen/sitemap-compare/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/nietthijmen/sitemap-compare/build-project.yml?branch=main&label=tests&style=flat-square)](https://github.com/nietthijmen/sitemap-compare/actions?query=workflow%build-project+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/nietthijmen/sitemap-compare.svg?style=flat-square)](https://packagist.org/packages/nietthijmen/sitemap-compare)
 
 ## Features
